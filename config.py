@@ -28,9 +28,9 @@ GAME_WINDOW_TITLE = "League of Legends"
 SCREEN_REGIONS = {
     "shop": {
         "x_ratio": 0.2,
-        "y_ratio": 0.75,
+        "y_ratio": 0.88,  # Moved down to capture just champion names (was 0.75)
         "width_ratio": 0.6,
-        "height_ratio": 0.2
+        "height_ratio": 0.08  # Reduced to capture just text area (was 0.2)
     },
     "gold": {
         "x_ratio": 0.05,
