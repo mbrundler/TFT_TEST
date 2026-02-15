@@ -63,11 +63,23 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Quick Start (No Game Required!)
+
+Test the app with YouTube gameplay videos:
+
+```bash
+python run_debug.py
+```
+
+Then open a [TFT gameplay video on YouTube](https://www.youtube.com/results?search_query=tft+gameplay). See [TESTING.md](TESTING.md) for detailed testing instructions.
+
+### Normal Usage
+
 1. Launch League of Legends and enter a TFT game
 
 2. Run the TFT Meta Guide:
 ```bash
-python src/main.py
+python run.py
 ```
 
 3. The overlay will appear on your screen with real-time recommendations
