@@ -187,8 +187,17 @@ class GameStateManager:
             w = int(width * shop_config["width_ratio"])
             h = int(height * shop_config["height_ratio"])
 
+            print(f"  🔍 Shop region: x={x}, y={y}, w={w}, h={h} (screen: {width}x{height})")
+
             # Extract shop region
             shop_region = screen[y:y+h, x:x+w]
+
+            # Save shop region in debug mode
+            if config.DEBUG_MODE:
+                import time
+                shop_path = config.SCREENSHOT_DIR / f"shop_region_{int(time.time())}.png"
+                cv2.imwrite(str(shop_path), shop_region)
+                print(f"  💾 Shop region saved: {shop_path}")
 
             # Divide shop into 5 champion slots (TFT shop has 5 slots)
             slot_width = w // 5
@@ -198,20 +207,31 @@ class GameStateManager:
                 slot_x = i * slot_width
                 champion_slot = shop_region[:, slot_x:slot_x+slot_width]
 
+                # Save individual slot in debug mode
+                if config.DEBUG_MODE:
+                    import time
+                    slot_path = config.SCREENSHOT_DIR / f"shop_slot_{i+1}_{int(time.time())}.png"
+                    cv2.imwrite(str(slot_path), champion_slot)
+
                 # Use OCR to detect champion name
+                print(f"  🔎 Scanning shop slot {i+1}...")
                 champion_name = self.champion_recognizer.recognize_champion(champion_slot)
 
                 if champion_name:
                     champions.append(champion_name)
                     print(f"  🛒 Detected in shop slot {i+1}: {champion_name}")
+                else:
+                    print(f"  ❌ No champion detected in slot {i+1}")
 
             state.shop_champions = champions
 
-            if config.DEBUG_MODE and champions:
+            if champions:
                 print(f"  📋 Total champions in shop: {champions}")
+            else:
+                print(f"  ⚠️  No champions detected in shop")
 
         except Exception as e:
-            print(f"Error extracting shop state: {e}")
+            print(f"❌ Error extracting shop state: {e}")
             import traceback
             traceback.print_exc()
 

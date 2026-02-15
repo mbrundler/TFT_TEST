@@ -61,7 +61,7 @@ SCREEN_REGIONS = {
 # OCR Settings
 OCR_ENGINE = "easyocr"  # or "tesseract"
 OCR_LANGUAGES = ["en"]
-OCR_CONFIDENCE_THRESHOLD = 0.6
+OCR_CONFIDENCE_THRESHOLD = 0.1  # Lowered for EasyOCR (0.1-0.3 is normal for game text)
 
 # Meta Data Settings
 META_UPDATE_INTERVAL = 21600  # 6 hours in seconds
@@ -85,9 +85,13 @@ MAX_SHOP_RECOMMENDATIONS = 5
 MAX_AUGMENT_RECOMMENDATIONS = 3
 
 # Debug Settings
-DEBUG_MODE = os.getenv("DEBUG", "False").lower() == "true"
+DEBUG_MODE = os.getenv("DEBUG", "false").lower() in ("true", "1", "yes")
 SAVE_SCREENSHOTS = DEBUG_MODE
 SCREENSHOT_DIR = BASE_DIR / "debug" / "screenshots"
+
+# Print debug status on import
+if DEBUG_MODE:
+    print(f"🔧 DEBUG MODE ENABLED")
 
 # Create directories
 for directory in [DATA_DIR, CACHE_DIR, TEMPLATES_DIR]:
