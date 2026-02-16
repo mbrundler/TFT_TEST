@@ -63,6 +63,31 @@ pip install -r requirements.txt
 
 ## Usage
 
+### 🎮 Companion App (RECOMMENDED - Start Here!)
+
+**Simple side-by-side app to use while playing TFT**
+
+1. **Start the API server:**
+```bash
+python backend/api.py
+```
+
+2. **Open the companion app** in your browser:
+```bash
+# Just double-click this file:
+companion_app/index.html
+
+# Or use command line:
+open companion_app/index.html  # macOS
+xdg-open companion_app/index.html  # Linux
+start companion_app/index.html  # Windows
+```
+
+3. **Play TFT** and manually update your game state in the companion app
+4. **Get instant recommendations** for builds, shop purchases, and augments!
+
+See [companion_app/README.md](companion_app/README.md) for detailed instructions.
+
 ### Quick Start (No Game Required!)
 
 Test the app with YouTube gameplay videos:
@@ -73,7 +98,7 @@ python run_debug.py
 
 Then open a [TFT gameplay video on YouTube](https://www.youtube.com/results?search_query=tft+gameplay). See [TESTING.md](TESTING.md) for detailed testing instructions.
 
-### Normal Usage
+### Full Overlay (Advanced - Coming Soon)
 
 1. Launch League of Legends and enter a TFT game
 
@@ -108,15 +133,25 @@ tft-meta-guide/
 
 ## Development Roadmap
 
-### Phase 1: Core Functionality ✅
+### Phase 1: Companion App ✅ **COMPLETE**
+- [x] Python recommendation engine
+- [x] Flask API backend
+- [x] Manual input UI (HTML/JS)
+- [x] Build recommendations
+- [x] Shop priorities
+- [x] Augment scoring
+- [x] Quick update buttons
+- [x] Real-time recommendations
+
+### Phase 2: Full Overlay (In Progress)
 - [x] Project structure
 - [x] Screen capture system
 - [x] Overlay UI framework
-- [x] Basic recommendation engine
 - [ ] OCR implementation
 - [ ] Game state detection
+- [ ] Automatic board reading
 
-### Phase 2: Advanced Features
+### Phase 3: Advanced Features
 - [ ] Opponent board tracking
 - [ ] Champion pool calculations
 - [ ] Real-time meta data integration
